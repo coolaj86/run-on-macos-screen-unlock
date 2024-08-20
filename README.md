@@ -133,3 +133,4 @@ tail -f ~/.local/share/run-on-macos-screen-unlock.*/var/log/run-on-macos-screen-
 
 -   [EventScripts](https://apps.apple.com/us/app/eventscripts/id525319418?l=en&mt=12)
 -   [HammarSpoon: caffeinate.watcher](https://www.hammerspoon.org/docs/hs.caffeinate.watcher.html)
+-   [sleepwatcher](https://github.com/fishman/sleepwatcher)
