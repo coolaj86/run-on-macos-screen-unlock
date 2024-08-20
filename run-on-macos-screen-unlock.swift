@@ -40,10 +40,6 @@ signal(SIGINT) { _ in
     exit(0)
 }
 
-enum ScriptError: Error {
-    case fileNotFound
-}
-
 func printForHuman(_ message: String) {
     if let data = message.data(using: .utf8) {
         FileHandle.standardError.write(data)
