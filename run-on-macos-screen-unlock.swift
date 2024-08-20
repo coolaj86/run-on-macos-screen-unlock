@@ -29,10 +29,6 @@ OPTIONS
   --help, help
       Display this help and exit.
 
-DESCRIPTION
-  \(name) is a simple command-line tool that demonstrates how to handle
-  version and help flags in a Swift program following POSIX conventions.
-
 """
 
 signal(SIGINT) { _ in
