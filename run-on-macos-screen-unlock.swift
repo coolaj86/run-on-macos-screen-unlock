@@ -3,16 +3,10 @@ import Foundation
 let name = (CommandLine.arguments[0] as NSString).lastPathComponent
 let version = "1.0.0"
 let build = "2024-08-19-001"
+let author = "AJ ONeal <aj@therootcompany.com>"
 
-let versionMessage = """
-\(name) \(version) (\(build))
-
-"""
-
-let copyrightMessage = """
-Copyright 2024 AJ ONeal <aj@therootcompany.com>
-
-"""
+let versionMessage = "\(name) \(version) (\(build))"
+let copyrightMessage = "Copyright 2024 \(author)"
 
 let helpMessage = """
 Runs a user-specified command whenever the screen is unlocked by
@@ -28,16 +22,15 @@ OPTIONS
       Display the version information and exit.
   --help, help
       Display this help and exit.
-
 """
 
 signal(SIGINT) { _ in
-    printForHuman("received ctrl+c, exiting...\n")
+    printForHuman("received ctrl+c, exiting...")
     exit(0)
 }
 
 func printForHuman(_ message: String) {
-    if let data = message.data(using: .utf8) {
+    if let data = "\(message)\n".data(using: .utf8) {
         FileHandle.standardError.write(data)
     }
 }
@@ -99,9 +92,9 @@ class ScreenLockObserver {
         do {
             try task.run()
         } catch {
-            printForHuman("Failed to run \(self.commandPath): \(error.localizedDescription)\n")
+            printForHuman("Failed to run \(self.commandPath): \(error.localizedDescription)")
             if let nsError = error as NSError? {
-                printForHuman("Error details: \(nsError)\n")
+                printForHuman("Error details: \(nsError)")
             }
             exit(1)
         }
@@ -128,9 +121,9 @@ func processArgs(_ args: inout ArraySlice<String>) -> ArraySlice<String> {
     }
     if removeItem(&args, "--help") || removeItem(&args, "help") {
         printForHuman(versionMessage)
-        printForHuman("\n")
+        printForHuman("")
         printForHuman(helpMessage)
-        printForHuman("\n")
+        printForHuman("")
         printForHuman(copyrightMessage)
         exit(0)
     }
@@ -143,15 +136,15 @@ func processArgs(_ args: inout ArraySlice<String>) -> ArraySlice<String> {
     childArgs = args + childArgs
     guard let commandName = childArgs.first else {
         printForHuman(versionMessage)
-        printForHuman("\n")
+        printForHuman("")
         printForHuman(helpMessage)
-        printForHuman("\n")
+        printForHuman("")
         printForHuman(copyrightMessage)
         exit(1)
     }
 
     guard let commandPath = getCommandPath(commandName) else {
-        printForHuman("ERROR:\n    \(commandName) not found in PATH\n")
+        printForHuman("ERROR:\n    \(commandName) not found in PATH")
         exit(1)
     }
 
