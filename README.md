@@ -23,6 +23,7 @@ serviceman add --user \
     -   [With a plist template](#with-a-plist-template)
 -   [Build from Source](#build-from-source)
 -   [Publish Release](#publish-release)
+-   [Similar Products](#similar-products)
 
 # Install
 
@@ -127,3 +128,8 @@ tail -f ~/.local/share/run-on-macos-screen-unlock.*/var/log/run-on-macos-screen-
     gzip ./run-on-macos-screen-unlock-v1.0.x.tar
     open .
     ```
+
+# Similar Products
+
+-   [EventScripts](https://apps.apple.com/us/app/eventscripts/id525319418?l=en&mt=12)
+-   [HammarSpoon: caffeinate.watcher](https://www.hammerspoon.org/docs/hs.caffeinate.watcher.html)
