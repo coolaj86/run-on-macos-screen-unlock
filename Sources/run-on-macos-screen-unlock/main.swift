@@ -18,8 +18,7 @@ to find the program in the user's PATH (or the explicit path given), and then
 runs it with /usr/bin/command, which can run aliases and shell functions also.
 """
 
-let helpMessage = """
-
+let helpMessage2 = """
 USAGE
   \(name) [OPTIONS] <command> [--] [command-arguments]
 
@@ -84,13 +83,10 @@ class ScreenLockObserver {
 }
 
 struct RunOnMacosScreenUnlock: ParsableCommand {
-    @Flag(name: [.customLong("--version"), .customLong("version"), .customShort("V")], help: "Display version information and exit.")
+    @Flag(name: [.customShort("V")], help: "version")
     var showVersion: Bool = false
 
-    @Flag(name: [.customLong("--help"), .customLong("help")], help: "Display this message and exit.")
-    var showHelp: Bool = false
-
-    // note: `--` is handled correctly
+    // note: `--` is handled POSIX-correctly (all flags and options after -- are parsed as arguments)
     @Argument(help: "The command and arguments to run after screen unlock.")
     var commandAndArgs: [String]
 
@@ -98,16 +94,50 @@ struct RunOnMacosScreenUnlock: ParsableCommand {
     static var configuration = CommandConfiguration(
         abstract: abstract,
         discussion: discussion,
-        version: version,
-        shouldDisplay: true
+        version: "\(versionMessage)\n\(copyrightMessage)",
+        shouldDisplay: true,
+        subcommands: [Help.self, Version.self],
+        helpNames: [.long]
+        /* versionNames: [.long, .customShort("-V")], */
     )
 
+	struct Help: ParsableCommand {
+        static let configuration = CommandConfiguration()
+
+        mutating func run() {
+            let helpMessage = RunOnMacosScreenUnlock.helpMessage(includeHidden: false)
+            print(helpMessage)
+        }
+    }
+
+	struct Version: ParsableCommand {
+        static let configuration = CommandConfiguration()
+
+        mutating func run() {
+            let helpMessage = RunOnMacosScreenUnlock.helpMessage(includeHidden: false)
+            print(helpMessage)
+        }
+    }
+
     mutating func validate() throws {
-        if showVersion {
+        if showVersion || commandAndArgs.contains("version") {
             print(versionMessage)
             print(copyrightMessage)
             throw ExitCode.success
         }
+
+        /* if commandAndArgs.contains("help") { */
+        /*     let helpMessage = Self.helpMessage(includeHidden: false) */
+        /*     print(helpMessage) */
+        /*     /1* print("\(versionMessage) - \(abstract)") *1/ */
+        /*     /1* print() *1/ */
+        /*     /1* print(discussion) *1/ */
+        /*     /1* print() *1/ */
+        /*     /1* print(helpMessage2) *1/ */
+        /*     /1* print() *1/ */
+        /*     /1* print(copyrightMessage) *1/ */
+        /*     throw ExitCode.success */
+        /* } */
 
         /* guard !commandAndArgs.isEmpty else { */
         /*     throw ValidationError("No command provided. Use --help to see usage.") */
