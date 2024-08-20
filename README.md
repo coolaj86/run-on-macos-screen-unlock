@@ -9,9 +9,10 @@ run-on-macos-screen-unlock ./examples/mount-network-shares.sh
 ```
 
 ```sh
+# add to launchctl (start on login)
 serviceman add --user \
     --path "$PATH" \
-    ~/bin/run-on-macos-screen-unlock ./examples/mount-network-shares.sh
+    ./run-on-macos-screen-unlock ./examples/mount-network-shares.sh
 ```
 
 # Table of Contents
