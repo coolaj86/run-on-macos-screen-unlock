@@ -1,8 +1,8 @@
 import Foundation
 
 let name = (CommandLine.arguments[0] as NSString).lastPathComponent
-let version = "1.0.0"
-let build = "2024-08-19-001"
+let version = "1.0.1"
+let build = "2024-08-20-001"
 let author = "AJ ONeal <aj@therootcompany.com>"
 
 let versionMessage = "\(name) \(version) (\(build))"
