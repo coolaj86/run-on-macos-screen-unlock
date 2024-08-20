@@ -59,17 +59,17 @@ func getCommandPath(_ command: String) -> String? {
     commandv.waitUntilExit()
 
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    guard let scriptPath = String(data: data, encoding: .utf8)?
+    guard let commandPath = String(data: data, encoding: .utf8)?
         .trimmingCharacters(in: .whitespacesAndNewlines)
     else {
         return nil
     }
 
-    if commandv.terminationStatus != 0, scriptPath.isEmpty {
+    if commandv.terminationStatus != 0, commandPath.isEmpty {
         return nil
     }
 
-    return scriptPath
+    return commandPath
 }
 
 class ScreenLockObserver {
