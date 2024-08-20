@@ -14,6 +14,15 @@ serviceman add --user \
     ~/bin/run-on-macos-screen-unlock ./examples/mount-network-shares.sh
 ```
 
+# Table of Contents
+
+-   [Install](#install)
+-   [Run on Login](#run-on-login)
+    -   [With serviceman](#with-serviceman)
+    -   [With a plist template](#with-a-plist-template)
+-   [Build from Source](#build-from-source)
+-   [Publish Release](#publish-release)
+
 # Install
 
 1. Download
@@ -34,6 +43,12 @@ serviceman add --user \
     ```
 
 # Run on Login
+
+You'll see notifications similar to these when adding launchctl services yourself:
+
+<img width="376" alt="Background Items Added" src="https://github.com/user-attachments/assets/362d180b-51e6-4e5a-a9be-8cdc356e5b34">
+
+<img width="827" alt="Login Items from unidentified developer" src="https://github.com/user-attachments/assets/fb8fce4c-035a-40ae-8f37-70c28e67ad87">
 
 ## With `serviceman`
 
@@ -73,6 +88,12 @@ serviceman add --user \
     launchctl load -w ~/Library/LaunchAgents/run-on-macos-screen-unlock.*.plist
     ```
 
+## View logs
+
+```sh
+tail -f ~/.local/share/run-on-macos-screen-unlock.*/var/log/run-on-macos-screen-unlock.*.log
+```
+
 # Build from Source
 
 1. Install XCode Tools \
@@ -90,7 +111,7 @@ serviceman add --user \
     swiftc ./run-on-macos-screen-unlock.swift
     ```
 
-# Release
+# Publish Release
 
 1. Git tag and push
     ```sh
