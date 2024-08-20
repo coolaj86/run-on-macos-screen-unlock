@@ -145,7 +145,7 @@ func processArgs(_ args: inout ArraySlice<String>) -> ArraySlice<String> {
     }
 
     childArgs = args + childArgs
-    guard childArgs.count > 0 else {
+    guard let commandName = childArgs.first else {
         printForHuman(versionMessage)
         printForHuman("\n")
         printForHuman(helpMessage)
@@ -154,7 +154,6 @@ func processArgs(_ args: inout ArraySlice<String>) -> ArraySlice<String> {
         exit(1)
     }
 
-    let commandName = childArgs.first!
     guard let commandPath = getCommandPath(commandName) else {
         printForHuman("ERROR:\n    \(commandName) not found in PATH\n")
         exit(1)
