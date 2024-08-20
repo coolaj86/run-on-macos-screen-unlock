@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated for serviceman. Edit as you wish, but leave this line. -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>run-on-macos-screen-unlock.COMMAND_LABEL_GOES_HERE</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/USERNAME_GOES_HERE/bin/run-on-macos-screen-unlock</string>
+		<string>COMMAND_GOES_HERE</string>
+	</array>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/Users/USERNAME_GOES_HERE/bin:/Users/USERNAME_GOES_HERE/.local/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin</string>
+	</dict>
+
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<!--dict>
+		<key>Crashed</key>
+		<true/>
+		<key>NetworkState</key>
+		<true/>
+		<key>SuccessfulExit</key>
+		<false/>
+	</dict-->
+
+	<key>WorkingDirectory</key>
+	<string>/tmp</string>
+
+	<key>StandardErrorPath</key>
+	<string>/Users/USERNAME_GOES_HERE/.local/share/run-on-macos-screen-unlock.COMMAND_LABEL_GOES_HERE/var/log/run-on-macos-screen-unlock.COMMAND_LABEL_GOES_HERE.log</string>
+	<key>StandardOutPath</key>
+	<string>/Users/USERNAME_GOES_HERE/.local/share/run-on-macos-screen-unlock.COMMAND_LABEL_GOES_HERE/var/log/run-on-macos-screen-unlock.COMMAND_LABEL_GOES_HERE.log</string>
+</dict>
+</plist>

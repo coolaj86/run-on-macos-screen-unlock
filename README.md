@@ -1,10 +1,17 @@
 # run-on-macos-screen-unlock
 
 A tiny Swift program to run a command whenever the screen unlocks \
-(I use it for mounting remounting network shares after sleep)
+(I use it for remounting network shares when waking from sleep)
 
 ```sh
+# run-on-macos-screen-unlock <command-to-run-on-unlock> [command-args]
 run-on-macos-screen-unlock ./examples/mount-network-shares.sh
+```
+
+```sh
+serviceman add --user \
+    --path "$PATH" \
+    ~/bin/run-on-macos-screen-unlock ./examples/mount-network-shares.sh
 ```
 
 # Install
@@ -24,6 +31,46 @@ run-on-macos-screen-unlock ./examples/mount-network-shares.sh
 4. Move into your `PATH`
     ```sh
     mv ./run-on-macos-screen-unlock ~/bin/
+    ```
+
+# Run on Login
+
+## With `serviceman`
+
+1. Install `serviceman`
+    ```sh
+    curl --fail-with-body -sS https://webi.sh/serviceman | sh
+    source ~/.config/envman/PATH.env
+    ```
+2. Register with Launchd \
+   (change `COMMAND_GOES_HERE` to your command)
+
+    ```sh
+    serviceman add --user \
+        --path "$PATH" \
+        ~/bin/run-on-macos-screen-unlock COMMAND_GOES_HERE
+    ```
+
+## With a plist template
+
+1. Download the template plist file
+    ```sh
+    curl --fail-with-body -L -O https://raw.githubusercontent.com/coolaj86/run-on-macos-screen-unlock/main/examples/run-on-macos-screen-unlock.COMMAND_LABEL_GOES_HERE.plist
+    ```
+2. Change the template variables to what you need:
+
+    - `USERNAME_GOES_HERE` (the result of `$(id -u -n)` or `echo $USER`)
+    - `COMMAND_LABEL_GOES_HERE` (lowercase, dashes, no spaces)
+    - `COMMAND_GOES_HERE` (the example uses `./examples/mount-network-shares.sh`)
+
+3. Rename and move the file to `~/Library/LaunchDaemons/`
+    ```sh
+    mv ./run-on-macos-screen-unlock.COMMAND_LABEL_GOES_HERE.plist ./run-on-macos-screen-unlock.example-label.plist
+    mv ./run-on-macos-screen-unlock.*.plist ~/Library/LaunchDaemons/
+    ```
+4. Register using `launchctl`
+    ```sh
+    launchctl load -w ~/Library/LaunchAgents/run-on-macos-screen-unlock.*.plist
     ```
 
 # Build from Source
