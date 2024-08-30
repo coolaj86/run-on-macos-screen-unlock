@@ -131,5 +131,6 @@ tail -f ~/.local/share/run-on-macos-screen-unlock.*/var/log/run-on-macos-screen-
 
 # Similar Products
 
+-   [How to run a command on lock/unlock](https://apple.stackexchange.com/questions/159216/run-a-program-script-when-the-screen-is-locked-or-unlocked) (the snippets from which this repo grew)
 -   [EventScripts](https://apps.apple.com/us/app/eventscripts/id525319418?l=en&mt=12)
 -   [HammarSpoon: caffeinate.watcher](https://www.hammerspoon.org/docs/hs.caffeinate.watcher.html)
