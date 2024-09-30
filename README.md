@@ -110,7 +110,7 @@ tail -f ~/.local/share/run-on-macos-screen-unlock.*/var/log/run-on-macos-screen-
     ```
 3. Build with `swiftc`
     ```sh
-    swiftc ./run-on-macos-screen-unlock.swift
+    swift build --configuration release
     ```
 
 # Publish Release
@@ -124,7 +124,7 @@ tail -f ~/.local/share/run-on-macos-screen-unlock.*/var/log/run-on-macos-screen-
    <https://github.com/coolaj86/run-on-macos-screen-unlock/releases/new>
 3. Tar and upload
     ```sh
-    tar cvf ./run-on-macos-screen-unlock-v1.0.x.tar ./run-on-macos-screen-unlock
+    tar cvf ./run-on-macos-screen-unlock-v1.0.x.tar -C .build/release/ ./run-on-macos-screen-unlock
     gzip ./run-on-macos-screen-unlock-v1.0.x.tar
     open .
     ```
@@ -134,3 +134,4 @@ tail -f ~/.local/share/run-on-macos-screen-unlock.*/var/log/run-on-macos-screen-
 -   [How to run a command on lock/unlock](https://apple.stackexchange.com/questions/159216/run-a-program-script-when-the-screen-is-locked-or-unlocked) (the snippets from which this repo grew)
 -   [EventScripts](https://apps.apple.com/us/app/eventscripts/id525319418?l=en&mt=12)
 -   [HammarSpoon: caffeinate.watcher](https://www.hammerspoon.org/docs/hs.caffeinate.watcher.html)
+-   [sleepwatcher](https://github.com/fishman/sleepwatcher)
